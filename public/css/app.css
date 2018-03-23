@@ -8368,6 +8368,19 @@ body {
   margin-top: 0px;
 }
 
+.navbar-static-top .dropdown-menu {
+  padding: 0px;
+}
+
+.navbar-static-top .dropdown-menu li a {
+  border-bottom: 1px solid #d8d8d8;
+  line-height: 2.4;
+}
+
+.navbar-static-top .dropdown-menu li a .glyphicon {
+  margin-right: 8px;
+}
+
 /* Sticky footer styles */
 
 html {
@@ -8417,33 +8430,61 @@ body {
   margin-bottom: 0px;
 }
 
+.users-show-page .nav-tabs {
+  margin-bottom: 20px;
+}
+
+.users-show-page .nav-tabs > li.active > a {
+  background-color: #fff;
+}
+
+.users-show-page .list-group .list-group-item {
+  border: none;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #efefef;
+}
+
+.users-show-page .list-group .list-group-item .meta {
+  color: #b3b3b3;
+}
+
+.users-show-page .pagination {
+  margin: 12px 0;
+}
+
 /* Topic Index Page */
 
-.topics-index-pag .topic-list .nav > li > a {
+.topics-index-pag .topic-list .nav > li > a,
+.categories-show-page .topic-list .nav > li > a {
   position: relative;
   display: block;
   padding: 5px 14px;
   font-size: 0.9em;
 }
 
-.topics-index-pag .topic-list a {
+.topics-index-pag .topic-list a,
+.categories-show-page .topic-list a {
   color: #444444;
 }
 
-.topics-index-pag .topic-list .meta {
+.topics-index-pag .topic-list .meta,
+.categories-show-page .topic-list .meta {
   font-size: 0.9em;
   color: #b3b3b3;
 }
 
-.topics-index-pag .topic-list .meta a {
+.topics-index-pag .topic-list .meta a,
+.categories-show-page .topic-list .meta a {
   color: #b3b3b3;
 }
 
-.topics-index-pag .topic-list .badge {
+.topics-index-pag .topic-list .badge,
+.categories-show-page .topic-list .badge {
   background-color: #d8d8d8;
 }
 
-.topics-index-pag .topic-list hr {
+.topics-index-pag .topic-list hr,
+.categories-show-page .topic-list hr {
   margin-top: 12px;
   margin-bottom: 12px;
   border: 0;
