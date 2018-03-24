@@ -69,7 +69,7 @@ class TopicsController extends Controller
         $topic->save();
 		//$topic = Topic::create($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+		return redirect()->route('topics.show', $topic->id)->with('message', '创建成功！');
 	}
 
     /**
@@ -94,7 +94,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
+		return redirect()->route('topics.show', $topic->id)->with('message', '更新成功！');
 	}
 
     /**
@@ -108,7 +108,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('topics.index')->with('message', '删除成功！');
 	}
 
     /**
@@ -128,7 +128,7 @@ class TopicsController extends Controller
         if($file = $request->upload_file)
         {
             //保存到服务器本地
-            $result = $uploader->save($request->upload_file,'topics',\Auth::id(),1024);
+            $result = $uploader->save($request->upload_file,'topics',\Auth::id(),900);
             //保存成功
             if($result){
                 $data['file_path'] = $result['path'];
