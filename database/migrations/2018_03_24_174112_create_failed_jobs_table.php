@@ -22,7 +22,7 @@ class CreateFailedJobsTable extends Migration
             $table->timestamp('failed_at')->useCurrent();
         });
     }
-服务器会有专门的文件夹存放路径和命名规则
+
     /**
      * Reverse the migrations.
      *
