@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Models\Category;
+use App\Handlers\ImageUploadHandler;
 use Auth;
 
 class TopicsController extends Controller
@@ -16,6 +17,12 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
+    /**
+     * 首页
+     * @param Request $request
+     * @param Topic $topic
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function index(Request $request, Topic $topic)
 	{
 	    //dd($request->order);
@@ -24,6 +31,12 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics'));
 	}
 
+    /**
+     * 展示页
+     * @param TopicRequest $request
+     * @param Topic $topic
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(TopicRequest $request,Topic $topic)
     {
         $topic->fill($request->all());
@@ -33,12 +46,22 @@ class TopicsController extends Controller
         return view('topics.show', compact('topic'));
     }
 
+    /**
+     * @param Topic $topic
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function create(Topic $topic)
 	{
             $categories = Category::all();
 		return view('topics.create_and_edit', compact('topic','categories'));
 	}
 
+    /**
+     *
+     * @param TopicRequest $request
+     * @param Topic $topic
+     * @return \Illuminate\Http\RedirectResponse
+     */
 	public function store(TopicRequest $request,Topic $topic)
 	{
         $topic->fill($request->all());
@@ -49,12 +72,23 @@ class TopicsController extends Controller
 		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
 	}
 
+    /**
+     * @param Topic $topic
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
 	public function edit(Topic $topic)
 	{
         $this->authorize('update', $topic);
 		return view('topics.create_and_edit', compact('topic'));
 	}
 
+    /**
+     * @param TopicRequest $request
+     * @param Topic $topic
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
 	public function update(TopicRequest $request, Topic $topic)
 	{
 		$this->authorize('update', $topic);
@@ -63,6 +97,12 @@ class TopicsController extends Controller
 		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
 	}
 
+    /**
+     * @param Topic $topic
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
 	public function destroy(Topic $topic)
 	{
 		$this->authorize('destroy', $topic);
@@ -70,4 +110,32 @@ class TopicsController extends Controller
 
 		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
 	}
+
+    /**
+     * @param Request $request
+     * @param ImageUploadHandler $uploader
+     * @return array
+     */
+	public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        //默认返回数据
+        $data = [
+            'success' => false,
+            'msg'     => '上传失败!',
+            'file_path' => ''
+        ];
+        //判断是否有文件
+        if($file = $request->upload_file)
+        {
+            //保存到服务器本地
+            $result = $uploader->save($request->upload_file,'topics',\Auth::id(),1024);
+            //保存成功
+            if($result){
+                $data['file_path'] = $result['path'];
+                $data['msg'] = '上传成功';
+                $data['success'] = true;
+            }
+        }
+        return $data;
+    }
 }
