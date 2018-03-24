@@ -16,6 +16,12 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * 只需简单在对应 Eloquent 模型方法前加上一个 scope 前缀，作用域总是返回 查询构建器。一旦定义了作用域，则可以在查询模型时调用作用域方法。在进行方法调用时不需要加上 scope 前缀
+     * @param $query
+     * @param $order
+     * @return mixed
+     */
     public function scopeWithOrder($query,$order)
     {
         // 不同的排序，使用不同的数据读取逻辑
@@ -43,5 +49,15 @@ class Topic extends Model
     {
         // 按照创建时间排序
         return $query->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * 这是为了兼容我们数据库中 Slug 为空的话题数据。
+     * @param array $params
+     * @return string
+     */
+    public function link($params = [])
+    {
+        return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
 }
