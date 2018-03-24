@@ -8958,3 +8958,15 @@ body {
   line-height: 38px;
 }
 
+.topics-show-page .operate {
+  overflow: hidden;
+}
+
+.topics-show-page .operate a {
+  float: left;
+}
+
+.topics-show-page .operate form {
+  float: left;
+}
+

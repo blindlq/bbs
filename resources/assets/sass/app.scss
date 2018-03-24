@@ -154,4 +154,13 @@ body {
       line-height: 38px;
     }
   }
+  .operate {
+      overflow: hidden;
+      a {
+        float: left;
+      }
+      form {
+        float: left;
+      }
+  }
 }
