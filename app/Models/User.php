@@ -26,10 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    //表之间的关联关系
     public function topics()
     {
         return $this->hasMany(Topic::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 
     /**

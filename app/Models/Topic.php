@@ -5,7 +5,7 @@ namespace App\Models;
 class Topic extends Model
 {
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
-
+    //表之间的关联关系
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -14,6 +14,11 @@ class Topic extends Model
     public function  user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 
     /**
