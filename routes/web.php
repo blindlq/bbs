@@ -45,3 +45,5 @@ Route::post('upload_image','TopicsController@uploadImage')->name('topics.upload_
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 
 Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
+//显示消息通知
+Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
