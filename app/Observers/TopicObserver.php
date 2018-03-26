@@ -40,5 +40,14 @@ class TopicObserver
         }
     }
 
+    /**
+     * 话题删除后，所有回复都删除    在模型监听器中，数据库操作需要避免再次 Eloquent 事件，所以这里我们使用了 DB 类进行操作。
+     * @param Topic $topic
+     */
+    public function  deleted(Topic $topic)
+    {
+        \DB::table('replies')->where('topic_id', $topic->id)->delete();
+    }
+
 
 }
