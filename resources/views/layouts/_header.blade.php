@@ -54,7 +54,7 @@
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
-                        
+
                         @can('manage_contents')
                             <li>
                                 <a href="{{ url(config('administrator.uri')) }}">
