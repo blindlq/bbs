@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         //注册填充类
          $this->call(UsersTableSeeder::class);
-
 		$this->call(TopicsTableSeeder::class);
 		$this->call(ReplysTableSeeder::class);
+        $this->call(LinksTableSeeder::class);
     }
 }

@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Handlers\ImageUploadHandler;
 use Auth;
 use App\Models\User;
+use App\Models\Link;
 
 
 class TopicsController extends Controller
@@ -25,14 +26,16 @@ class TopicsController extends Controller
      * @param Topic $topic
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-	public function index(Request $request, Topic $topic,User $user)
+	public function index(Request $request, Topic $topic,User $user,Link $link)
 	{
 	    //dd($request->order);
         $topics = $topic->withOrder($request->order)->paginate(20);
         $active_users = $user->getActiveUsers();
+        $links = $link->getAllCached();
+
         //dd($active_users);
 		//$topics = Topic::with('user','category')->paginate(10);
-		return view('topics.index', compact('topics','active_users'));
+		return view('topics.index', compact('topics','active_users','links'));
 	}
 
     /**
