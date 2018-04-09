@@ -16,7 +16,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1',[
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array','bindings']
+    'middleware' => ['serializer:array','bindings','change-locale']
     ],function ($api){
 
     $api->group([
@@ -71,6 +71,9 @@ $api->version('v1',[
         // 资源推荐
         $api->get('links', 'LinksController@index')
             ->name('api.links.index');
+        // 活跃用户
+        $api->get('actived/users', 'UsersController@activedIndex')
+            ->name('api.actived.users.index');
 
 
 
