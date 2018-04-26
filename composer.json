@@ -6,8 +6,9 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "barryvdh/laravel-ide-helper": "^2.4",
         "dingo/api": "2.0.0-alpha1",
-        "doctrine/dbal": "^2.6",
+        "doctrine/dbal": " ~2.3",
         "fideloper/proxy": "~3.3",
         "gregwar/captcha": "^1.1",
         "guzzlehttp/guzzle": "~6.3",
@@ -22,12 +23,12 @@
         "overtrue/easy-sms": "^1.0",
         "overtrue/laravel-lang": "~3.0",
         "overtrue/pinyin": "~3.0",
+        "phpunit/phpunit": "~6.0",
         "predis/predis": "~1.0",
         "socialiteproviders/weixin": "^4.0",
         "spatie/laravel-permission": "~2.7",
         "summerblue/administrator": "~1.1",
         "tymon/jwt-auth": "1.0.0-rc.1",
-        "phpunit/phpunit": "~6.0",
         "viacreative/sudo-su": "~1.1"
     },
     "require-dev": {
