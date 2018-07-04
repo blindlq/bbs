@@ -1,23 +1,36 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Example Component</div>
-
-                    <div class="panel-body">
-                        I'm an example component!
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div>
+        <group>
+            <cell title="Total" value="￥1024"></cell>
+            <cell-form-preview :list="list"></cell-form-preview>
+        </group>
     </div>
 </template>
 
 <script>
+    import { CellFormPreview, Group, Cell } from 'vux'
+
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        components: {
+            CellFormPreview,
+            Group,
+            Cell
+        },
+        data () {
+            return {
+                list: [{
+                    label: 'Apple',
+                    value: '3.29'
+                }, {
+                    label: 'Banana',
+                    value: '1.04'
+                }, {
+                    label: 'Fish',
+                    value: '8.00'
+                }]
+            }
         }
     }
 </script>
+
+

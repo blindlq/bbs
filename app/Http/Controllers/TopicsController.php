@@ -33,9 +33,12 @@ class TopicsController extends Controller
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
 
+
         //dd($active_users);
-		//$topics = Topic::with('user','category')->paginate(10);
+		$topics = Topic::with('user','category')->paginate(10);
 		return view('topics.index', compact('topics','active_users','links'));
+
+        //return view('welcome');
 	}
 
     /**
